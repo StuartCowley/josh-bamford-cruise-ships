@@ -5,15 +5,9 @@ const Ship = require('../src/Ship.js');
 describe('Port', () => {
     describe('with ports and ships', () => {
         let port;
-        let ship;
-        let titanic;
-        let queenMary;
 
         beforeEach(() => {
             port = new Port('Dover');
-            ship = {};
-            titanic = {};
-            queenMary = {};
         });
         it('can be instantiated ', () => {
             expect(new Port()).toBeInstanceOf(Object);
@@ -21,16 +15,20 @@ describe('Port', () => {
         it('has a name property', () => {
             expect(port.name).toBe('Dover');
         });
-        it('can add ship', () => {   
-           port.addShip(ship);
-    
-           expect(port.ships).toContain(ship);
+        it('can add ship', () => {  
+            const ship = jest.fn();  
+            port.addShip(ship);
+            
+            expect(port.ships).toContain(ship);
         });
         it('can remove a ship', () => {
+            const titanic = {};
+            const queenMary = {};
+
             port.addShip(titanic);
             port.addShip(queenMary);
             port.removeShip(titanic);
-    
+            
             expect(port.ships).toEqual([queenMary]);
         });
     });
