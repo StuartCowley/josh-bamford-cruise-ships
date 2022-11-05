@@ -22,14 +22,14 @@ describe('Port', () => {
             expect(port.ships).toContain(ship);
         });
         it('can remove a ship', () => {
-            const titanic = {};
-            const queenMary = {};
+            const titanic = jest.fn();
+            const queenMary = jest.fn();
 
             port.addShip(titanic);
             port.addShip(queenMary);
             port.removeShip(titanic);
             
-            expect(port.ships).toEqual([queenMary]);
+            expect(port.ships).not.toContain([titanic]);
         });
     });
 });
